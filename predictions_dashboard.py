@@ -8,10 +8,11 @@ def load_data():
     arima = pd.read_csv('arima_prediction.csv')
     actual = pd.read_csv('actual_y.csv')
     return lstm, arima, actual
-
+#GEtting the data stored in these variables. I cahced it above so the dashboard is not slow
 lstm, arima, actual = load_data()
 
 st.title('LSTM and ARIMA models versus Actual')
 st.write('this doashboard is to show the difference between the lstm and arima model and how accurate they are at predicting crime in 2016')
+
 
 
