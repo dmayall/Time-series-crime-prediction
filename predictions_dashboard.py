@@ -24,13 +24,14 @@ areas = st.sidebar.multiselect('Choose the areas you would like to include',geoi
 #aggregating badsed on geoid options
 
 if areas == ['All']:
-    actual_counts = df.groupby(['Type', 'Quarter']).sum()
-    actual_counts = actual_counts.reset_index()
+    area = actual['geodi10'].unique().tolist()
 else:
-    actual_counts = df[df['geodi10'].isin(areas)]
-    actual_counts = df.groupby(['Type', 'Quarter']).sum()
-    actual_counts = actual_counts.reset_index()
+    area = areas
+actual_counts = df[df['geodi10'].isin(area)]
+actual_counts = actual_counts.groupby(['Type', 'Quarter']).sum()
+actual_counts = actual_counts.reset_index()
 #Making graphs 
+st.write(actual_counts)
 tab1, tab2, tab3 = st.tabs(["All Other Theft", "Simple Assualt", "Theft From Motor Vehicle"])
 with tab1:
     Alltheft_line = alt.Chart(actual_counts[['Type', 'Quarter', 'All Other Thefts']]).mark_line().transform_fold(fold=df['Type'].unique().tolist(), as_=['variable', 'value']).encode(
