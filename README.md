@@ -1,6 +1,30 @@
 # Time-series-crime-prediction
-This is a few models that I have made for another project that predicts the amount of crime in the next year of data 2016 using 2012-2015 and some predictors. The models used so far is an LSTM and ARIMA model. 
+[![image](https://github.com/dmayall/Human-Trafficking-Analysis/assets/108638892/140d4fca-4a91-4930-ae95-2860b7a611fd)](https://time-series-crime-prediction.streamlit.app/)
+## Introduction
+This project has a goal to be able to predict the amount of crime to occur in each quarter for each census tract of future years. using two models (LSTM and ARIMA) I aimed to take two different approaches to see what would work best. The LSTM approach took in other arguments aside from the sequence itself which included:
 
-This is a project where I process, explore, and balance my data to produce a decently accurate models for this project. It was my first time working with time series data for predictions so making an LSTM and ARMIA models was a fun and new experience. If anyone has input on how I could have improved either model I would much appreciate any input. Also if anyone is interested in the data or needs it for running the file reach out to me since the files are too large for github to take. This project will probably get updated for a while since I enjoy it so much. I will add any updates below.
+- Gas Price (per census tract)
+- Weather including tempature and rainfall (per census tract)
+- Percent enrolled in k-12 (per census tract for each year)
+- Median income (per census tract for each year) 
 
-update (11/24/2023): I grabbed the outputs (predicted simple assault, car theft, all otehr thefts) of each model as being predicted for each geoid10(the census track for charlotte) and put it together in a dataframe with the geoid10 and quarter so I can start making a streamlit dashboard of the results for easy readable viewing. 
+Predicting the amount of crime in the future for each census tract could better help police prepare based on those predictions. 
+
+## Data Source
+This data is found in the following website:
+- https://data.charlottenc.gov/datasets/charlotte::cmpd-incidents-1/about'
+- https://data.census.gov/
+- All other data sources are provided in the code
+
+## Model/NN Used
+These are articles on the Arima modle and LSTM NN below:
+- Arima: https://people.duke.edu/~rnau/411arim.htm
+- LSTM: https://colah.github.io/posts/2015-08-Understanding-LSTMs/
+
+## Data Preparation 
+- Grouped all years together
+- Combined the different data sets
+- Filtered to desired crimes (Theft from motor vehicle, simple assualt, adn all other thefts)
+- Gathered census tract data through ArcGis and then imported that data into python
+- seperated teh data into a dictionary with each census tract as a key
+- Put the data for each key into a sequential from that could be read by the algorithm and lstm
